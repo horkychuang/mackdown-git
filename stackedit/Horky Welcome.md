@@ -1,6 +1,9 @@
-# Welcome to StackEdit!
+# Basic 
 
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+## Matrix
+一個矩陣由許多個數字構成，排列整齊，呈現矩形。我們習慣把數字改稱為「元素 element 」。
+
+水平一整條元素叫做 row ，垂直一整條元素叫做 column 。元素的編號，先編 row ，次編 column 。
 
 
 # Files
@@ -142,5 +145,5 @@ B --> D{Rhombus}
 C --> D
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzMjQ1NTM2M119
+eyJoaXN0b3J5IjpbMzA4NzM2NTM4LC0zMzI0NTUzNjNdfQ==
 -->
