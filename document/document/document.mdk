@@ -1,0 +1,88 @@
+Title         : K Nearest Neighbors
+Author        : Horky Chuang
+Logo          : True
+
+[TITLE]
+
+# K Nearest Neighbors 
+
+K nearest neighbors is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure (e.g., distance functions).
+
+## Algorithm
+A case is classified by a majority vote of its neighbors, 
+with the case being assigned to the class most common amongst its K nearest neighbors measured by a **distance function**. 
+If K = 1, then the case is simply assigned to the class of its nearest neighbor.
+
+
+
+Distance Function
+
+~ Center
+Manhattan $\sum_{i=1}^{k}|x_{i}-y_{i}|$
+
+Manhattan $\sum_{i=1}^{k}|x_{i}-y_{i}|$
+
+Minkowski $\left(\sum_{i=1}^{k}\left(|x_{i}-y_{i}|\right)^{q}\right)^{1/q}$
+~
+
+It should also be noted that all three distance measures are only valid for **continuous variables**. 
+In the instance of **categorical variables** the Hamming distance must be used. 
+It also brings up the issue of standardization of the numerical variables between 0 and 1 when there is a mixture of numerical and categorical variables in the dataset.
+
+Hamming Distance 
+
+~ Math
+D_{H}=\sum_{i=1}^{k}|x_{i}-y_{i}|
+~
+
+~ Math
+\begin{array}{c}
+x=y\Rightarrow D=0\\
+x\neq y\Rightarrow D=1
+\end{array}
+~
+
+
+~ Center
+| X    | y      | Distance |
+| -----| -------| ---------|
+| Male | Male   | 0        |
+| Male | Female | 1        |
+~
+
+
+Choosing the optimal value for K is best done by first inspecting the data. 
+In general, a large K value is more precise as it reduces the overall noise but there is no guarantee. 
+Cross-validation is another way to retrospectively determine a good K value by using an independent dataset to validate the K value. 
+Historically, the optimal K for most datasets has been between 3-10. 
+
+## Example:
+Consider the following data concerning credit default. 
+Age and Loan are two numerical variables (predictors) and Default is the target.
+We can now use the training set to classify an unknown case (Age=48 and Loan=$142,000) using Euclidean distance. 
+If K=1 then the nearest neighbor is the last case in the training set with Default=Y.
+
+
+$D=\sqrt{\left(48-33\right)^{2}+\left(142000-150000\right)^{2}}=8000.01\rightarrow Y$
+
+
+![KNN_example_1]
+
+[KNN_example_1]: images/KNN_example_1.png "KNN_example_1" { width:auto; max-width:90% }
+
+With $K=3$, there are two Default=Y and one Default=N out of three closest neighbors. 
+The prediction for the unknown case is again Default=Y.
+
+### Standardized Distance
+One major drawback in calculating distance measures directly from the training set is in the case where variables have different measurement scales or there is a mixture of numerical and categorical variables. For example, if one variable is based on annual income in dollars, and the other is based on age in years then income will have a much higher influence on the distance calculated. 
+
+![KNN_example_2]
+
+One solution is to standardize the training set as shown below.
+
+[KNN_example_2]: images/KNN_example_2.png "KNN_example_2" { width:auto; max-width:90% }
+
+Using the standardized distance on the same training set, 
+the unknown case returned a different neighbor which is not a good sign of robustness.
+
+
